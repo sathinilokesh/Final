@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>APK Analysis Report - {{ apk_name }}</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background: #f7f7f7; }
+    .container { background: #fff; padding: 20px; border-radius: 8px; }
+    h1 { color: #333; }
+    .verdict { font-weight: bold; color: {% if verdict.lower() == "fake" %}red{% else %}green{% endif %}; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #ddd; padding: 8px; }
+    th { background: #f2f2f2; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>APK Analysis Report</h1>
+    <p><b>APK:</b> {{ apk_name }}</p>
+    <p><b>SHA256:</b> {{ sha256 }}</p>
+    <p><b>Generated:</b> {{ generated }}</p>
+    <p><b>Verdict:</b> <span class="verdict">{{ verdict|upper }}</span> (Prob Fake: {{ prob_fake }})</p>
+
+    <h2>Extracted Features</h2>
+    <table>
+      <tr><th>Feature</th><th>Value</th></tr>
+      {% for key, val in features.items() %}
+      <tr><td>{{ key }}</td><td>{{ val }}</td></tr>
+      {% endfor %}
+    </table>
+
+    {% if mobsf_report %}
+    <h2>MobSF Findings</h2>
+    <pre>{{ mobsf_report | tojson(indent=2) }}</pre>
+    {% endif %}
+  </div>
+</body>
+</html>

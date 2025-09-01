@@ -1,4 +1,4 @@
-```markdown
+
 # 🕵️ Fake Banking APK Detector
 
 An automated pipeline to detect fake / malicious banking apps (APKs) by combining:
@@ -159,7 +159,3 @@ fake_apk_detector/
 * **Dynamic Analysis** can be enabled by setting `MOBSF_DYNAMIC=true` (requires emulator integration in MobSF).
 * **VirusTotal integration** is optional (not included here due to API limits).
 * The ML model improves as you collect more labeled APK samples (both genuine & fake).
-
----
-
-

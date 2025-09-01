@@ -14,13 +14,13 @@ for d in [SAMPLES_DIR, OUTPUT_DIR, REPORTS_DIR, MODELS_DIR]:
     d.mkdir(parents=True, exist_ok=True)
 
 # MobSF
-MOBSF_URL = os.getenv("MOBSF_URL", "http://localhost:8000/api/v1")
+MOBSF_URL = os.getenv("MOBSF_URL", "http://localhost:8000/")
 MOBSF_API_KEY = os.getenv("MOBSF_API_KEY", "secret")  # set your key
 MOBSF_TIMEOUT = int(os.getenv("MOBSF_TIMEOUT", "900"))   # 15 mins for heavy scans
 MOBSF_DYNAMIC = os.getenv("MOBSF_DYNAMIC", "false").lower() == "true"
 
 # Classifier
-MODEL_PATH = MODELS_DIR / "bank_apk_classifier.joblib"
+MODEL_PATH = MODELS_DIR / "apk_rf_model.pkl"
 
 # Security / Upload limits
 MAX_APK_MB = int(os.getenv("MAX_APK_MB", "200"))

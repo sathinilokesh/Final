@@ -57,9 +57,7 @@ pip install -r requirements.txt
 Run MobSF via Docker (easiest way):
 
 ```bash
-docker run -it --rm -p 8000:8000 \
-  -e MOBSF_API_KEY=CHANGE_ME \
-  opensecurity/mobile-security-framework-mobsf:latest
+docker run -it --rm -p 8000:8000 -e MOBSF_ANALYZER_IDENTIFIER=emulator-5554  -e MOBSF_API_KEY=secret opensecurity/mobile-security-framework-mobsf:latest
 ```
 
 Copy your `MOBSF_API_KEY` and update it in `utils/config.py` or set as env var:

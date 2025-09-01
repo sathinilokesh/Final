@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "name": "Python: Train Model",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/model/train_model.py",
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}

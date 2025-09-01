@@ -1,21 +1,21 @@
-# precheck/precheck.py
 import hashlib
+import os
 from pathlib import Path
-from utils.logger import get_logger
 
-log = get_logger("precheck")
-
-def compute_sha256(file_path: Path) -> str:
+def compute_sha256(file_path: str) -> str:
+    """Compute SHA256 hash for an APK file."""
     h = hashlib.sha256()
     with open(file_path, "rb") as f:
-        for chunk in iter(lambda: f.read(1024 * 1024), b""):
+        for chunk in iter(lambda: f.read(8192), b""):
             h.update(chunk)
     return h.hexdigest()
 
-def precheck(file_path: Path) -> dict:
-    if not file_path.exists():
-        raise FileNotFoundError(file_path)
+def precheck(file_path: str) -> dict:
+    """Collect basic metadata (hash, size)."""
     sha256 = compute_sha256(file_path)
-    size = file_path.stat().st_size
-    log.info(f"Precheck: {file_path.name} | sha256={sha256} | size={size} bytes")
+    size = os.path.getsize(file_path)
     return {"sha256": sha256, "size": size}
+
+if __name__ == "__main__":
+    sample = "../data/samples/sample.apk"
+    print(precheck(sample))
